@@ -1,0 +1,19 @@
+# Two-service setup: the FastAPI backend and the Streamlit dashboard as separate containers.
+# Secrets come from .env (see .env.example); nothing is baked into the images.
+services:
+  api:
+    build: .
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    env_file: [{path: .env, required: false}]
+    environment:
+      ROBOTOPS_DATA_DIR: /data
+    ports: ["127.0.0.1:8000:8000"]
+  web:
+    build: .
+    env_file: [{path: .env, required: false}]
+    environment:
+      ROBOTOPS_API_URL: http://api:8000
+      # The UI never needs the GitHub token; blank it even if .env sets it.
+      GITHUB_TOKEN: ""
+    ports: ["127.0.0.1:8501:8501"]
+    depends_on: [api]
