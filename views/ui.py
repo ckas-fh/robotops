@@ -10,11 +10,10 @@ import streamlit as st
 
 from robotops.client import ApiError, RobotOpsClient
 
-# Cool-toned robot status palette; validated for color-blind separation and contrast (dataviz validator, light mode).
-STATUS_COLORS = {"Operational": "#008300", "Charging": "#2a78d6", "Maintenance": "#0f9d8a", "Down": "#4a3aa7"}
+STATUS_COLORS = {"Operational": "#0ca30c", "Charging": "#2a78d6", "Maintenance": "#fab219", "Down": "#d03b3b"}
 # Text colors for state cells in tables (paired with the label text, never color alone).
 STATE_COLORS = {
-    **STATUS_COLORS,  # robot status text matches the chart
+    "Operational": "#0a7d0a", "Charging": "#2a78d6", "Maintenance": "#b26b00", "Down": "#d03b3b",
     "OK": "#0a7d0a",
     "Due soon": "#b26b00", "Overdue": "#d03b3b", "Never inspected": "#898781",
     "Pass": "#0a7d0a", "Needs attention": "#b26b00", "Fail": "#d03b3b",
