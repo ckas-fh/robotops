@@ -1,10 +1,12 @@
 """RobotOps — synthetic robotics operations dashboard (Streamlit entry point)."""
 
+from pathlib import Path
+
 import streamlit as st
 
 from views import dashboard, maintenance_page, ui
 
-st.set_page_config(page_title="RobotOps", page_icon=":material/build:", layout="wide")
+st.set_page_config(page_title="RobotOps", page_icon=Path(__file__).parent / "static" / "wrench.svg", layout="wide")
 
 pages = [
     st.Page(dashboard.render, title="Fleet dashboard", icon=":material/dashboard:", url_path="fleet", default=True),
